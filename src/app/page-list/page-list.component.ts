@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Product} from '../product'
 import {ProductService} from '../product.service'
+import {CartService} from '../cart.service';
+import {Router} from '@angular/router'
 @Component({
   selector: 'app-page-list',
   templateUrl: './page-list.component.html',
@@ -16,7 +18,8 @@ newprod : Product= {
 	description:'',
 	price:0
 }
-  constructor(public productService : ProductService) { }
+  constructor(public productService : ProductService, 
+    public cartService: CartService, public router : Router) { }
 
   ngOnInit() {
   this.productService.getProducts().subscribe(data=>{
@@ -36,5 +39,10 @@ newprod : Product= {
 }
 selectProduct(phone){
 	this.selectedProduct = phone
+}
+public addProductIntoCart(product : Product){
+  this.cartService.addItem(product)
+  this.router.navigateByUrl('/carts');
+  console.log(this.cartService.items)
 }
 }

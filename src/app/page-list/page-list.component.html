@@ -3,7 +3,7 @@
   This is where we are putting the products.
   <div id="product-list">
     <div class="row">
-<div *ngFor ="let phone of phones" (click)="selectProduct(phone)" class="col-4" [class.red-bg]="phone === selectedProduct">
+<div *ngFor ="let phone of phones"  class="col-4" [class.red-bg]="phone === selectedProduct">
 
 <div class="card">
   <div class="card-header">
@@ -12,7 +12,11 @@
   <div class="card-body">
     <blockquote class="blockquote mb-0">
       <p>{{phone.description}}</p>
-      <footer class="blockquote-footer"> {{phone.price | number:'3.2'}}</footer>
+      <p>{{phone.price | number:'3.2'}}</p>
+      <footer > 
+        <button class="btn btn-primary" (click)="addProductIntoCart(phone)">Add to Cart</button>
+        <button class="btn btn-success" (click)="selectProduct(phone)">View Detail</button>
+      </footer>
     </blockquote>
   </div>
 </div>

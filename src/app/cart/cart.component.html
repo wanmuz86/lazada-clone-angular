@@ -8,27 +8,21 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
+    <tr *ngFor="let item of cartItems">
 
-      <td><input type="number" name="itemQty" value="1"></td>
-      <td>Iphone 5</td>
-      <td>RM 2000</td>
-      <td><button class="btn btn-danger">Delete</button></td>
+      <td><input type="number" name="itemQty" value="{{item.quantity}}"></td>
+      <td>{{item.product.name}}</td>
+      <td>RM {{item.product.price}}</td>
+      <td><button class="btn btn-danger" (click)="deleteProduct(item)">Delete</button></td>
     </tr>
     <tr>
 
-      <td><input type="number" name="itemQty" value="1"></td>
-      <td>Iphone 8</td>
-      <td>RM 3000</td>
-      <td><button class="btn btn-danger">Delete</button></td>
+      <td></td>
+      <td><strong>Total</strong></td>
+      <td>{{totalCount}}</td>
+      <td>RM {{totalPrice}}</td>
     </tr>
-     <tr>
-
-      <td><input type="number" name="itemQty" value="1"></td>
-      <td>Iphone 10</td>
-      <td>RM 3000</td>
-      <td><button class="btn btn-danger">Delete</button></td>
-    </tr>
+    
   </tbody>
 </table>
 <button class="btn btn-secondary" routerLink="/products">Continue shopping</button>
