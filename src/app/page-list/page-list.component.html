@@ -1,0 +1,39 @@
+<h1>Product List</h1>
+
+  This is where we are putting the products.
+  <div id="product-list">
+    <div class="row">
+<div *ngFor ="let phone of phones" (click)="selectProduct(phone)" class="col-4" [class.red-bg]="phone === selectedProduct">
+
+<div class="card">
+  <div class="card-header">
+    {{phone.name | uppercase}} 
+  </div>
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      <p>{{phone.description}}</p>
+      <footer class="blockquote-footer"> {{phone.price | number:'3.2'}}</footer>
+    </blockquote>
+  </div>
+</div>
+
+ </div>
+</div>
+</div>
+<hr/>
+<div id="product-form">
+	<h2>Add new item</h2>
+	 <label>name:
+      <input [(ngModel)]="newprod.name" placeholder="name" type="text">
+    </label>
+
+    <label>description:
+      <input [(ngModel)]="newprod.description" placeholder="description" type="text">
+    </label>
+      <label>price:
+      <input [(ngModel)]="newprod.price" placeholder="price" type="number">
+    </label>
+	<button (click)="addItem()">Add Item</button>
+</div>
+<app-product-detail [currentProduct]="selectedProduct"></app-product-detail>
+
