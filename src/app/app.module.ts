@@ -9,12 +9,21 @@ import {ProductService} from './product.service';
 import { RouterModule, Routes } from '@angular/router';
 import { OrderComponent } from './order/order.component';
 import { CartComponent } from './cart/cart.component';
-import {CartService} from './cart.service'
+import {CartService} from './cart.service';
+import { LoginComponent } from './login/login.component'
+import { AngularFireModule } from 'angularfire2';
+import { environment } from '../environments/environment';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import {AuthService} from './auth.service';
+import {UserService} from './user.service'
+import { NavHeaderComponent } from './nav-header/nav-header.component'
 const routes: Routes = [
   { path: 'products', component: PageListComponent },
   { path: 'detail/:id', component: ProductDetailComponent },
   { path: 'orders', component:OrderComponent},
   {path: 'carts', component:CartComponent},
+  {path: 'login', component:LoginComponent},
   { path: "**", redirectTo: "/products" }
 ];
 @NgModule({
@@ -24,14 +33,20 @@ const routes: Routes = [
     ProductDetailComponent,
     OrderComponent,
     CartComponent,
+    LoginComponent,
+    NavHeaderComponent,
   
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireAuthModule
+
   ],
-  providers: [ProductService,CartService],
+  providers: [ProductService,CartService, AuthService,UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

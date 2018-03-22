@@ -4,5 +4,13 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: "AIzaSyDw1wnYempAlPIw-DoyfcCO7xIbfDKxxZs",
+    authDomain: "angular-lazada-clone.firebaseapp.com",
+    databaseURL: "https://angular-lazada-clone.firebaseio.com",
+    projectId: "angular-lazada-clone",
+    storageBucket: "",
+    messagingSenderId: "420692731816"
+  }
 };

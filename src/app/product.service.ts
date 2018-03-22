@@ -3,39 +3,28 @@ import {PRODUCTS } from './mock-phones'
 import {Product} from './product'
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 @Injectable()
 export class ProductService {
-products = [{
-	id:1,
-	name:"iPhone 10",
-	description:"Best phone ever",
-	price: 1999
-},
-{
-	id:2,
-	name:"Samsung 10",
-	description:"Best phone ever",
-	price: 2999
-},
-{
-	id:3,
-	name:"Huawei P10",
-	description:"Best phone ever",
-	price: 2099
-}
 
-]
-  constructor() { }
+ 	private productsCollection: AngularFirestoreCollection<Product>;
+  	products: Observable<Product[]>;
+
+  	constructor(private afs: AngularFirestore) {
+  		this.productsCollection  = afs.collection<Product>('products');
+  		this.products=this.productsCollection.valueChanges();
+  	}
 
   getProducts() : Observable<Product[]> {
-  	return of(this.products)
+  	return this.products
   }
   addItem(item){
-  	this.products.push(item)
+  		this.productsCollection.add(item)
+  ///	this.products.push(item)  
   }
-  getProduct(id: number): Observable<Product> {
+/*  getProduct(id: number): Observable<Product> {
 
   return of(this.products.find(product => product.id === id));
-}
+}*/
 
 }

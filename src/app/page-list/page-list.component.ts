@@ -19,9 +19,12 @@ newprod : Product= {
 	price:0
 }
   constructor(public productService : ProductService, 
-    public cartService: CartService, public router : Router) { }
+    public cartService: CartService, public router : Router) {
+    this.ngOnInit();
+     }
 
   ngOnInit() {
+    console.log("here");
   this.productService.getProducts().subscribe(data=>{
   	this.phones = data 
   });
